@@ -1,28 +1,120 @@
 <div>
-  <md-toolbar color="primary">
-    <span><md-icon>mood</md-icon></span>
-
-    <span>Yay, Material in Angular 2!</span>
-
-    <button md-icon-button [md-menu-trigger-for]="menu">
-      <md-icon>more_vert</md-icon>
-    </button>
-  </md-toolbar>
-  <md-menu x-position="before" #menu="mdMenu">
-    <button md-menu-item>Option 1</button>
-    <button md-menu-item>Option 2</button>
-  </md-menu>
-
-  <md-card>
-    <button md-button>All</button>
-    <button md-raised-button>Of</button>
-    <button md-raised-button color="primary">The</button>
-    <button md-raised-button color="accent">Buttons</button>
-  </md-card>
-
-  <span class="done">
-    <button md-fab>
-      <md-icon>check circle</md-icon>
-    </button>
-  </span>
+    <md-toolbar color="primary">
+        <span><md-icon>list</md-icon></span>
+        <span>Carrier Operations</span>
+        <button md-icon-button [md-menu-trigger-for]="menu">
+            <md-icon>more_vert</md-icon>
+        </button>
+    </md-toolbar>
+    <md-menu x-position="before" #menu="mdMenu">
+        <button md-menu-item>Email Generator</button>
+        <button md-menu-item>TMS Softwares</button>
+        <button md-menu-item>GPS Providers</button>
+    </md-menu>
+    <md-card>
+        <div>
+            <md-input [(ngModel)]="shipper" placeholder="Shipper" dividerColor="accent" required></md-input>
+            <md-input [(ngModel)]="carrier" placeholder="Carrier" dividerColor="accent" required></md-input>
+            <md-input [(ngModel)]="contact" placeholder="Contact's First Name" dividerColor="accent"></md-input>
+        </div>
+        <div>
+            <md-input [(ngModel)]="deadline" placeholder="Deadline (Date)" dividerColor="accent"></md-input>
+            <md-input [(ngModel)]="tms" placeholder="TMS" dividerColor="accent"></md-input>
+            <md-input [(ngModel)]="gps" placeholder="GPS" dividerColor="accent"></md-input>
+        </div>
+        <div>
+            <md-input [(ngModel)]="date1" placeholder="Onboarding Call Date 1" dividerColor="accent"></md-input>
+            <md-input [(ngModel)]="date2" placeholder="Onboarding Call Date 2" dividerColor="accent"></md-input>
+            <md-input [(ngModel)]="date3" placeholder="Onboarding Call Date 3" dividerColor="accent"></md-input>
+        </div>
+    </md-card>
+    <md-card>
+        <md-tab-group [selectedIndex]="0">
+            <md-tab label="Initial Carrier Email">
+                <h3>Initial Carrier Email #1 (First Outreach)</h3>
+                <p>Hi {{contact}},
+                    <br>
+                    <br>You should have received an email informing you of {{shipper}}'s intent to onboard their carriers onto the FourKites platform by {{deadline}}. I'd like to set up a brief onboarding call to discuss the project and what we need from you to get up and running. The initial call should not take more than 15-30 minutes. If possible, please have an IT contact available for the call as well.
+                    <br>
+                    <br>Please propose a few times that work well for you within the available windows below, and I'll send an invite.
+                    <br>
+                    <br>(Note: All times in Central Standard Time)</p>
+                <ul>
+                    <li>{{date1}}</li>
+                    <li>{{date2}}</li>
+                    <li>{{date3}}</li>
+                </ul>
+                <p>Best,</p>
+            </md-tab>
+            <md-tab label="Onboarding Call Confirmation">
+                <h3>Carrier Email #2 (Confirm Call + ask questions if they didn't complete the survey)</h3>
+                <p>Hi {{contact}},
+                    <br>
+                    <br>Thanks so much for getting back to me! I just sent you a calendar invite for our call on {{date}}. Please let me know if you didn't receive it.
+                    <br>
+                    <br>Note that within the calendar invite is a RingCentral link. Please click on the link a couple minutes prior to the call to download the screen-share software I'll use to show you the FourKites platform that {{shipper}} will be using to track their loads.
+                    <br>
+                    <br>Additionally, to save time and streamline our conversation, I'd appreciate if you could please send me your responses to the following questions prior to our call:</p>
+                <ul>
+                    <li>How do you track your active trucks? (GPS/ELD unit in truck, check calls to driver's cell phone, etc.)</li>
+                    <li>Do you use third party carriers for {{shipper}} loads?</li>
+                    <li>What TMS software or dispatch system do you use to manage your loads? (TMW, McLeod, an excel spreadsheet, a white board, etc.)</li>
+                </ul>
+                <p>I look forward to speaking with you!
+                    <br>
+                    <br>Best,</p>
+            </md-tab>
+            <md-tab label="GPS & Truck File">
+                <h3>Using GPS Provider and Sending Truck Numbers via CSV</h3>
+                <p>Thank you for following up so quickly with the carrier onboarding process for {{shipper}}. As I mentioned during our call, there are two components to the process: GPS access and truck number integration via a csv file.
+                    <br>
+                    <br>For GPS access, please sign the attached data sharing agreement for {{gps}}. Please note that there is no cost to {{carrier}}. Once I receive your signed agreement, I will reach out to {{gps}} to move forward with the next steps.
+                    <br>
+                    <br>For truck number integration, we will need to receive a csv file every 15 minutes from {{tms}}. You can either send the file to our email at trucks@fourkites.com or via FTP (if you would like to do this option, we can provide credentials). For your reference, the file should include:
+                    <br>
+                </p>
+                <ul>
+                    <li>XXX (a customer identifier for {{shipper}}. This can be anything-alphabetical or numerical)</li>
+                    <li>BOL #</li>
+                    <li>Truck #</li>
+                </ul>
+                <p>Let me know if you have any questions.</p>
+            </md-tab>
+            <md-tab label="Location File">
+                <h3>Using GPS Provider and Sending Truck Numbers via CSV</h3>
+                <p>Thank you for following up so quickly with the carrier onboarding process for {{shipper}}. As I mentioned during our call, there are two components to the process: GPS access and truck number integration via a csv file.
+                    <br>
+                    <br>For GPS access, please sign the attached data sharing agreement for {{gps}}. Please note that there is no cost to {{carrier}}. Once I receive your signed agreement, I will reach out to {{gps}} to move forward with the next steps.
+                    <br>
+                    <br>For location information, we will need to receive a csv file every 15 minutes from {{tms}}. You can either send the file to our email at trucks@fourkites.com or via FTP (if you would like to do this option, we can provide credentials). For your reference, the file should include the following, among other fields:
+                    <br>
+                </p>
+                <ul>
+                    <li>XXX (a customer identifier for {{shipper}}. This can be anything-alphabetical or numerical)</li>
+                    <li>BOL #</li>
+                    <li>Truck #</li>
+                    <li>Lats/longs and the time stamps at which they were recorded</li>
+                    <li>Delivery time stamp (should be identical to the time stamp associated with the last lat/long recorded for that load)</li>
+                </ul>
+                <p>Let me know if you have any questions.</p>
+            </md-tab>
+            <md-tab label="Driver Phone File">
+                <h3>Using GPS Provider and Sending Truck Numbers via CSV</h3>
+                <p>Thank you for following up so quickly with the carrier onboarding process for {{shipper}}. As I mentioned during our call, there are two components to the process: GPS access and truck number integration via a csv file.
+                    <br>
+                    <br>For GPS access, please sign the attached data sharing agreement for {{gps}}. Please note that there is no cost to {{carrier}}. Once I receive your signed agreement, I will reach out to {{gps}} to move forward with the next steps.
+                    <br>
+                    <br>For truck number integration, we will need to receive a csv file every 15 minutes from {{tms}}. You can either send the file to our email at trucks@fourkites.com or via FTP (if you would like to do this option, we can provide credentials). For your reference, the file should include:
+                    <br>
+                </p>
+                <ul>
+                    <li>XXX (a customer identifier for {{shipper}}. This can be anything-alphabetical or numerical)</li>
+                    <li>BOL #</li>
+                    <li>Truck #</li>
+                    <li>Driver Phone #</li>
+                </ul>
+                <p>Let me know if you have any questions.</p>
+            </md-tab>
+        </md-tab-group>
+    </md-card>
 </div>
