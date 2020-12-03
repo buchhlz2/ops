@@ -1,5 +1,5 @@
 # OpsSite Email Generator
-Angular 1.0 "email" generator for startup -- while team was sending hundreds of redundant emails, this was used to help replace the fields that changed.
+Electron & Angular 1.0 "email" generator app for startup -- while team was sending hundreds of redundant emails, this was used to help replace the fields that changed.
 
 ## Demo:
 ![](ops_tool.gif)
